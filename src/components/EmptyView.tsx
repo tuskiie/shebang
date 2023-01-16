@@ -5,7 +5,7 @@ import AppendDefaultsAction from "./AppendDefaultsAction";
 
 function EmptyView(props: {
   shebangs: Shebang[];
-  onCreate: (title: string, subtitle: string) => void;
+  onCreate: (prefix: string, name: string, subtitle: string) => void;
   onRestore: () => void;
 }) {
   if (props.shebangs.length > 0) {

@@ -2,16 +2,17 @@ import { useCallback } from "react";
 import { Form, Action, ActionPanel, useNavigation } from "@raycast/api";
 
 function CreateShebangForm(props: {
-  defaultTitle?: string;
+  defaultPrefix?: string;
+  defaultName?: string;
   defaultSubtitle?: string;
-  onCreate: (title: string, subtitle: string) => void;
+  onCreate: (prefix: string, name: string, subtitle: string) => void;
 }) {
-  const { onCreate, defaultTitle = "#!/usr/bin/", defaultSubtitle = "" } = props;
+  const { onCreate, defaultPrefix = "/usr/bin/", defaultName = "bash", defaultSubtitle = "" } = props;
   const { pop } = useNavigation();
 
   const handleSubmit = useCallback(
-    (values: { title: string; subtitle: string }) => {
-      onCreate(values.title, values.subtitle);
+    (values: { prefix: string; name: string; subtitle: string }) => {
+      onCreate(values.prefix, values.name, values.subtitle);
       pop();
     },
     [onCreate, pop]
@@ -25,7 +26,8 @@ function CreateShebangForm(props: {
         </ActionPanel>
       }
     >
-      <Form.TextField id="title" defaultValue={defaultTitle} title="Shebang" />
+      <Form.TextField id="prefix" defaultValue={defaultPrefix} title="Path" />
+      <Form.TextField id="name" defaultValue={defaultName} title="Name" />
       <Form.TextField id="subtitle" defaultValue={defaultSubtitle} title="Description" />
     </Form>
   );

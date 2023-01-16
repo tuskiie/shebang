@@ -2,9 +2,10 @@ import { Action, Icon } from "@raycast/api";
 import CreateShebangForm from "./CreateShebangForm";
 
 function CreateShebangAction(props: {
-  defaultTitle?: string;
+  defaultPrefix?: string;
+  defaultName?: string;
   defaultSubtitle?: string;
-  onCreate: (title: string, subtitle: string) => void;
+  onCreate: (prefix: string, name: string, subtitle: string) => void;
 }) {
   return (
     <Action.Push
@@ -12,7 +13,10 @@ function CreateShebangAction(props: {
       title="Create Shebang"
       shortcut={{ modifiers: ["cmd"], key: "n" }}
       target={
-        <CreateShebangForm defaultTitle={(props.defaultTitle, props.defaultSubtitle)} onCreate={props.onCreate} />
+        <CreateShebangForm
+          defaultName={(props.defaultPrefix, props.defaultName, props.defaultSubtitle)}
+          onCreate={props.onCreate}
+        />
       }
     />
   );
