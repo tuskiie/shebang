@@ -13,7 +13,32 @@ const DEFAULT_SHEBANGS: Shebang[] = [
   {
     id: nanoid(),
     title: "#!/bin/sh",
-    subtitle: "Bourne shell or compatible."
+    subtitle: "Bourne shell (or compatible)"
+  },
+  {
+    id: nanoid(),
+    title: "#!/bin/bash",
+    subtitle: "Bash shell"
+  },
+  {
+    id: nanoid(),
+    title: "#!/bin/zsh",
+    subtitle: "Z shell"
+  },
+  {
+    id: nanoid(),
+    title: "#!/usr/bin/pwsh",
+    subtitle: "Powershell"
+  },
+  {
+    id: nanoid(),
+    title: "#!/usr/bin/python",
+    subtitle: "Python"
+  },
+  {
+    id: nanoid(),
+    title: "#!/usr/bin/python3",
+    subtitle: "Python3"
   }
 ];
 
@@ -69,7 +94,7 @@ export default function Command() {
   }, [state.shebangs, setState]);
 
   return (
-    <List isLoading={state.isLoading}>
+    <List isLoading={state.isLoading} searchBarPlaceholder="Search shebangs...">
       <EmptyView shebangs={state.shebangs} onCreate={handleCreate} onRestore={handleAppend} />
       {state.shebangs.map((shebang, index) => (
         <List.Item
